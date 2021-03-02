@@ -7,6 +7,7 @@ import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
 import { signoutRouter } from "./routes/signout";
 import { signupRouter } from "./routes/signup";
+import { errorHandler } from "./middleware/error-handler";
 
 const PORT = 3000;
 const app = express();
@@ -17,6 +18,9 @@ app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
 app.use(signupRouter);
+
+// Middleware to return error messages - uniform
+app.use(errorHandler);
 
 // From BROWSER to API
 /* app.get("/api/users/currentuser", (req, res) => {
