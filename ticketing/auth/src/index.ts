@@ -1,15 +1,29 @@
+// Dependencies
 import express from "express";
-
 import { json } from "body-parser";
+// npmjs library module
+
+import { currentUserRouter } from "./routes/current-user";
+import { signinRouter } from "./routes/signin";
+import { signoutRouter } from "./routes/signout";
+import { signupRouter } from "./routes/signup";
 
 const PORT = 3000;
-
 const app = express();
-app.use(json());
 
-app.get("/api/users/currentuser", (req, res) => {
+app.use(json());
+// Routers
+app.use(currentUserRouter);
+app.use(signinRouter);
+app.use(signoutRouter);
+app.use(signupRouter);
+
+// From BROWSER to API
+/* app.get("/api/users/currentuser", (req, res) => {
   res.send("This is a working test - PAL");
-});
+
+  
+}); */
 
 app.listen(PORT, () => {
   console.log(`Action on PORT: ${PORT}`);
