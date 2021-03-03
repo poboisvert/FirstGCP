@@ -1,5 +1,7 @@
 # First Google Could in Typescript
 
+<img src="https://github.com/poboisvert/FirstGCP/blob/main/GCP.png" width="450" />
+
 ## Skaffold with GCP
 
 ### HOST file

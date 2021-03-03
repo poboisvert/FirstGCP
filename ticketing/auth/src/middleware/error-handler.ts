@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 // Middleware error handler
-import { RequestValidationError } from "../errors/request-validation-error";
-import { DatabaseConnectionError } from "../errors/database-connection-error";
+import { CustomError } from "../errors/custom-error";
 
 export const errorHandler = (
   err: Error,
@@ -9,12 +8,13 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  if (err instanceof RequestValidationError) {
-    console.log("Handling this error as REQ Validation ERR");
+  // Uniform return errors
+  // https://en.wikipedia.org/wiki/List_of_HTTP_status_codes - 500 internal error or 503
+  if (err instanceof CustomError) {
+    // 400 user sent bad data
+    return res.status(err.statusCode).send({ errors: err.serializeErrors() });
   }
-  if (err instanceof DatabaseConnectionError) {
-    console.log("Handling this error as DB connection ERR");
-  }
+
   res.status(400).send({
     message: "Something went wrong",
   });
