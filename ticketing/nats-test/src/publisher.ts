@@ -22,5 +22,6 @@ client.on("connect", () => {
   // Data is not mandatory
   client.publish("ticket:created", data, () => {
     console.log("Event published");
+    // use rs in publisher terminal to see the activity
   });
 });
