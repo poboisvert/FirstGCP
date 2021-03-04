@@ -2,6 +2,21 @@
 
 <img src="https://github.com/poboisvert/FirstGCP/blob/main/GCP.png" width="450" />
 
+## Typescript
+
+### Configuration file
+
+The parent folder of /src. Please run:
+
+> npm install node-nats-streaming ts-node-dev typescript @types/node
+> tsc -- init
+
+## NATS
+
+NATS is not used and NATS Streaming Server is used in this application
+
+https://docs.nats.io/
+
 ## Skaffold with GCP
 
 ### HOST file

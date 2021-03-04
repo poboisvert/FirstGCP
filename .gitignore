@@ -6,7 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# Mac
 .DS_Store
+
+# Node JS
+ticketing/auth/node_modules
+ticketing/nats-test/node_modules
 
 # Distribution / packaging
 .Python
