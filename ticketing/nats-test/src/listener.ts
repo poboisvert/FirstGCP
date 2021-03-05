@@ -14,8 +14,15 @@ client.on("connect", () => {
   console.log("Listener connected to NATS");
 
   // Subscription to a specific event
-  const subscription = client.subscribe("ticket:created");
-  // NO () => {}
+  // setDeliverAllAvailable() - setManualAckMode - setMaxInFlight, etc
+  // Processing/code to run to filter the message then acknowledge manually like 30 sec and if not done will sent it by default.
+  const options = client.subscriptionOptions().setManualAckMode(true);
+  const subscription = client.subscribe(
+    "ticket:created",
+    "orders-service-queue-group",
+    options
+  );
+  // NO () => {} like in ES6
 
   // NATS Listener and use a sub
   // "CMD + Click" on "Message" to see the fonctionality
@@ -27,9 +34,9 @@ client.on("connect", () => {
     if (typeof data === "string") {
       console.log(
         `received event ID: ${msg.getSequence()}, and it says ${data}`
-
         // received event ID: 7, and it says {"id":"111","title":"concert","price":20}
       );
     }
+    msg.ack(); // to reply a manual confirmation to setManualAckMode(true);
   });
 });
