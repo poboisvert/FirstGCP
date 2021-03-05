@@ -1,11 +1,13 @@
 import nats, { Message } from "node-nats-streaming";
+import { randomBytes } from "crypto";
 
 // Documentation use stan
-const client = nats.connect("ticketing", "123", {
+// randomBytes(4), we can now have many listener with different ID
+const client = nats.connect("ticketing", randomBytes(4).toString("hex"), {
   url: "http://localhost:4222",
 });
 
-// Open the ClusterIP on a specifi port (4222)
+// Open the ClusterIP on a specific port (4222)
 // kubectl port-forward """nats-depl-6b89f95f9b-9rmrs""" 4222:4222
 // Use image: nats-streaming
 client.on("connect", () => {

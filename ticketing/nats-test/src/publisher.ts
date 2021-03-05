@@ -5,7 +5,7 @@ const client = nats.connect("ticketing", "abc", {
   url: "http://localhost:4222",
 });
 
-// Open the ClusterIP on a specifi port (4222)
+// Open the ClusterIP on a specific port (4222)
 // kubectl port-forward """nats-depl-6b89f95f9b-9rmrs""" 4222:4222
 // Use image: nats-streaming
 
