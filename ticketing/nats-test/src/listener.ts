@@ -13,6 +13,11 @@ const client = nats.connect("ticketing", randomBytes(4).toString("hex"), {
 client.on("connect", () => {
   console.log("Listener connected to NATS");
 
+  client.on("close", () => {
+    console.log("NATS is now closed");
+    process.exit();
+  });
+
   // Subscription to a specific event
   // setDeliverAllAvailable() - setManualAckMode - setMaxInFlight, etc
   // Processing/code to run to filter the message then acknowledge manually like 30 sec and if not done will sent it by default.
@@ -39,4 +44,14 @@ client.on("connect", () => {
     }
     msg.ack(); // to reply a manual confirmation to setManualAckMode(true);
   });
+});
+
+// Watching to interruption or termination/close
+// http://localhost:8222/streaming/channelsz?subs=1 is almost live on change listener Quantity on/live
+process.on("SIGINT", () => {
+  client.close();
+});
+
+process.on("SIGTERM", () => {
+  client.close();
 });

@@ -12,3 +12,7 @@
 
 > npm start listener
 > npm start publisher
+
+--- NATS
+
+URL: http://localhost:8222/streaming
