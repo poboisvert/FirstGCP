@@ -4,6 +4,7 @@
 -- Open nats port
 
 > k get pods
+
 > kubectl port-forward """nats-depl-ID""" 4222:4222
 
 --- Start nats-test

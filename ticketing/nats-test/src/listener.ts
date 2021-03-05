@@ -21,10 +21,15 @@ client.on("connect", () => {
   // Subscription to a specific event
   // setDeliverAllAvailable() - setManualAckMode - setMaxInFlight, etc
   // Processing/code to run to filter the message then acknowledge manually like 30 sec and if not done will sent it by default.
-  const options = client.subscriptionOptions().setManualAckMode(true);
+  const options = client
+    .subscriptionOptions()
+    .setManualAckMode(true) // Ack MODE
+    .setDeliverAllAvailable() // Get all events from past. Can be too heavy to load on a large applciation since it aggregate all queries
+    .setDurableName("accounting-service"); // accounting-service to maintain the logs - setDurableName with setDeliverAllAvailable
+
   const subscription = client.subscribe(
     "ticket:created",
-    "orders-service-queue-group",
+    "queue-group-name", // If restart listener, the previous history is keep here
     options
   );
   // NO () => {} like in ES6
@@ -42,7 +47,7 @@ client.on("connect", () => {
         // received event ID: 7, and it says {"id":"111","title":"concert","price":20}
       );
     }
-    msg.ack(); // to reply a manual confirmation to setManualAckMode(true);
+    msg.ack(); // to reply a manual confirmation to setManualAckMode(true); - ACK MODE
   });
 });
 
