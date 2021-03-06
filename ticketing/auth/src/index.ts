@@ -1,8 +1,9 @@
 // Dependencies
+// npmjs library module
 import express from "express";
 import "express-async-errors";
 import { json } from "body-parser";
-// npmjs library module
+import mongoose from "mongoose";
 
 import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
@@ -35,6 +36,22 @@ app.use(errorHandler);
   res.send("This is a working test - PAL");  
 }); */
 
+const start = async () => {
+  try {
+    await mongoose.connect("mongodb://auth-mongo-srv:27017/auth", {
+      useNewUrlParser: true, // Generic settings
+      useUnifiedTopology: true, // Generic settings
+      useCreateIndex: true, // Generic settings
+    }); // Cluster IP and database at the end / and Mongoose will create it if not existing
+    console.log("Connected to MongoDB");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 app.listen(PORT, () => {
-  console.log(`Action on PORT: ${PORT}`);
+  console.log(`Active on PORT: ${PORT}`);
 });
+
+// Run DB
+start();

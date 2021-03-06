@@ -15,11 +15,12 @@ spec:
       containers:
         - name: auth-mongo
           image: mongo # On Docker Hub - image
---- # Cluster IP Service to connect to the pod
+---
+# Cluster IP Service to connect to the pod
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-mongo-serv
+  name: auth-mongo-srv
 spec:
   selector:
     app: auth-mongo # find the pod name
