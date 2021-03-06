@@ -3,7 +3,7 @@
 import express from "express";
 import "express-async-errors";
 import { json } from "body-parser";
-import mongoose from "mongoose";
+import mongoose, { Collection } from "mongoose";
 
 import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
@@ -35,6 +35,15 @@ app.use(errorHandler);
 /* app.get("/api/users/currentuser", (req, res) => {
   res.send("This is a working test - PAL");  
 }); */
+
+/* 
+### Understand MongoDB - Start
+MongoDB
+User Collection
+ - User #1
+ - User #2 
+ ### Understand MongoDB Start - End
+ */
 
 const start = async () => {
   try {
