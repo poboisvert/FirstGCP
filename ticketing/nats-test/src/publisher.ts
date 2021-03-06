@@ -8,7 +8,6 @@ const client = nats.connect("ticketing", "abc", {
 // Open the ClusterIP on a specific port (4222)
 // kubectl port-forward """nats-depl-6b89f95f9b-9rmrs""" 4222:4222
 // Use image: nats-streaming
-
 client.on("connect", () => {
   console.log("Publisher connected to NATS");
 
