@@ -1,5 +1,6 @@
 import { CustomError } from "./custom-error";
 
+// BadRequestError is adding up to CustomError
 export class BadRequestError extends CustomError {
   statusCode = 400;
 
