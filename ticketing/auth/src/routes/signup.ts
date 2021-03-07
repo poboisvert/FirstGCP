@@ -2,10 +2,11 @@
 import express, { Request, Response } from "express";
 // body is used as a middleware and validate the information
 import { body, validationResult } from "express-validator";
+// Import user model
+import { User } from "../models/user";
 // Middleware error handler
 import { RequestValidationError } from "../errors/request-validation-error";
-import { DatabaseConnectionError } from "../errors/database-connection-error";
-
+import { BadRequestError } from "../errors/bad-request-error";
 // Setup router
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.post(
       .withMessage("Password must be between 4 and 20 characters"),
   ],
   // Typescript :Request, :Response to let know
-  (req: Request, res: Response) => {
+  async (req: Request, res: Response) => {
     const errors = validationResult(req);
 
     // Validation the information received
@@ -28,15 +29,20 @@ router.post(
       /*       throw new Error("Invalid email or password"); */
       throw new RequestValidationError(errors.array());
     }
-    // Process the data
+
+    // Data & Validation Step
     const { email, password } = req.body;
+    const existingUser = await User.findOne({ email });
 
-    console.log("Creating a user");
-    /*     throw new Error("No database connection"); */
-    throw new DatabaseConnectionError();
+    if (existingUser) {
+      throw new BadRequestError("Email in use");
+    }
 
-    // Send
-    res.send({});
+    // Build user & save to MongoDB
+    const user = User.build({ email, password });
+    await user.save();
+
+    res.status(201).send(user);
   }
 );
 
