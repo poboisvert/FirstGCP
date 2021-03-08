@@ -2,28 +2,27 @@
 
 <img src="https://github.com/poboisvert/FirstGCP/blob/main/GCP.png" width="450" />
 
-## Typescript
-
-### Configuration file
+## Typescript - Configuration
 
 The parent folder of /src. Please run:
 
 > npm install node-nats-streaming ts-node-dev typescript @types/node
+
 > tsc -- init
 
-## NATS
+## NATS.io
 
 NATS is not used and NATS Streaming Server is used in this application
 
 https://docs.nats.io/
 
-## Skaffold with GCP
+## Skaffold with GCP - Configuration
 
 ### HOST file
 
 > nvim /etc/hosts
 
-### Docker
+### Docker - Configuration
 
 > COPY . .
 
@@ -39,11 +38,19 @@ Step 2: Build an Image
 
 > docker build -t pob944/auth .
 
-## K8s
+## K8s - Configuration
 
 Simply adjust the configuration in "infrastructure/k8s" and edit the bottom for all the files.
 
-## Google Cloud
+### K8S - Secret for JWT
+
+> kubectl create secret generic jwt-secret --from-literal=JWT_KEY=my_key
+
+See the secrets
+
+> k get secret
+
+## Google Cloud - Configuration
 
 ## Create an account
 
@@ -78,7 +85,7 @@ Remove/remplace:
 For:
 -> us-gcr.io/ticketing-dev/<project_name>
 
-#### NGINX settings (Load Balancer in GCP):
+#### NGINX settings (Load Balancer in GCP)
 
 > kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/cloud/deploy.yaml
 

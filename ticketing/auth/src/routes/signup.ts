@@ -1,16 +1,13 @@
-// Import Request, Response for Typescript
 import express, { Request, Response } from "express";
-// body is used as a middleware and validate the information
-import { body, validationResult } from "express-validator";
-// Import user model
+import { body } from "express-validator";
+import jwt from "jsonwebtoken";
+
+import { validateRequest } from "../middlewares/validate-request";
 import { User } from "../models/user";
-// Middleware error handler
-import { RequestValidationError } from "../errors/request-validation-error";
 import { BadRequestError } from "../errors/bad-request-error";
-// Setup router
+
 const router = express.Router();
 
-// Action from router
 router.post(
   "/api/users/signup",
   [
@@ -20,31 +17,38 @@ router.post(
       .isLength({ min: 4, max: 20 })
       .withMessage("Password must be between 4 and 20 characters"),
   ],
-  // Typescript :Request, :Response to let know
+  validateRequest,
   async (req: Request, res: Response) => {
-    const errors = validationResult(req);
-
-    // Validation the information received
-    if (!errors.isEmpty()) {
-      /*       throw new Error("Invalid email or password"); */
-      throw new RequestValidationError(errors.array());
-    }
-
-    // Data & Validation Step
+    // Aggregate the data sent
     const { email, password } = req.body;
+
+    // Compare the user from the req.password and the MongoDB
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       throw new BadRequestError("Email in use");
     }
 
-    // Build user & save to MongoDB
+    // Build user
     const user = User.build({ email, password });
     await user.save();
+
+    // Generate JWT
+    const userJwt = jwt.sign(
+      {
+        id: user.id,
+        email: user.email,
+      },
+      process.env.JWT_KEY!
+    );
+
+    // Store it on session object
+    req.session = {
+      jwt: userJwt,
+    };
 
     res.status(201).send(user);
   }
 );
 
-// Export the route and rename. Can't use router for all
 export { router as signupRouter };

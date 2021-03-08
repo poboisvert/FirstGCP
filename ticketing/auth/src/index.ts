@@ -9,13 +9,25 @@ import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
 import { signoutRouter } from "./routes/signout";
 import { signupRouter } from "./routes/signup";
-import { errorHandler } from "./middleware/error-handler";
+import { errorHandler } from "./middlewares/error-handler";
 import { NotFoundError } from "./errors/not-found-error";
+
+// Session Validation
+import cookieSession from "cookie-session";
 
 const PORT = 3000;
 const app = express();
 
+// With cookieSession - secure
+app.set("trust proxy", true);
+
 app.use(json());
+app.use(
+  cookieSession({
+    signed: false,
+    secure: true, // Need a https
+  })
+);
 // Routers
 app.use(currentUserRouter);
 app.use(signinRouter);
