@@ -1,12 +1,11 @@
 import express from "express";
+import { currentUser } from "../middlewares/current-user";
 
-// Setup router
 const router = express.Router();
 
-// Action from router
-router.get("/api/users/currentuser", (req, res) => {
-  res.send("Working again PAL - curr-user");
+router.get("/api/users/currentuser", currentUser, (req, res) => {
+  // Add new properties to the current req
+  res.send({ currentUser: req.currentUser || null });
 });
 
-// Export the route and rename. Can't use router for all
 export { router as currentUserRouter };

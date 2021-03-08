@@ -4,8 +4,10 @@ import express from "express";
 const router = express.Router();
 
 // Action from router
-router.get("/api/users/signout", (req, res) => {
-  res.send("Working again PAL - signout");
+router.post("/api/users/signout", (req, res) => {
+  req.session = null;
+
+  res.send({});
 });
 
 // Export the route and rename. Can't use router for all
