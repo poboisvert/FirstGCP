@@ -13,6 +13,8 @@ __pycache__/
 ticketing/auth/node_modules
 ticketing/nats-test/node_modules
 
+ticketing/auth/package-lock.json
+ticketing/auth/node_modules/.package-lock.json
 # Distribution / packaging
 .Python
 build/
