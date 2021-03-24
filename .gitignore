@@ -12,6 +12,8 @@ __pycache__/
 # Node JS
 ticketing/auth/node_modules
 ticketing/nats-test/node_modules
+ticketing/client/node_modules
+ticketing/client/package-lock.json
 
 ticketing/auth/package-lock.json
 ticketing/auth/node_modules/.package-lock.json
