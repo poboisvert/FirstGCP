@@ -1,20 +1,48 @@
-const signup = () => {
+import useRequest from "../../hooks/use-request";
+import { useState } from "react";
+import Router from "next/router";
+
+export default () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { doRequest, errors } = useRequest({
+    url: "/api/users/signup",
+    method: "post",
+    body: {
+      email,
+      password,
+    },
+    onSuccess: () => Router.push("/"),
+  });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    await doRequest(); // wait then execute the line below - router
+  };
+
   return (
-    <form action="">
-      <h1>Signup</h1>
+    <form onSubmit={onSubmit}>
+      <h1>Sign Up</h1>
       <div className="form-group">
         <label>Email Address</label>
-        <input type="text" className="form-control" />
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="form-control"
+        />
       </div>
       <div className="form-group">
         <label>Password</label>
-        <input type="password" className="form-control" />
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          className="form-control"
+        />
       </div>
-      <button type="submit" className="btn btn-primary">
-        Sign Up
-      </button>
+      {errors}
+      <button className="btn btn-primary">Sign Up</button>
     </form>
   );
 };
-
-export default signup;
