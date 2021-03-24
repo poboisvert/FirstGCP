@@ -20,3 +20,12 @@ it("Details on user", async () => {
 
   // console.log(res.body); // { currentUser: null } =>  .set("Cookie", cookie) added
 });
+
+it("If null if not authenticated", async () => {
+  const res = await request(app)
+    .get("/api/users/currentuser")
+    .send()
+    .expect(200);
+
+  expect(res.body.currentUser).toEqual(null);
+});
