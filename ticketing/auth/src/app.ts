@@ -23,7 +23,8 @@ app.use(json());
 app.use(
   cookieSession({
     signed: false,
-    secure: true, // Need a https
+    // secure: true, // Need a https - testing this is an issue with supertest
+    secure: process.env.NODE_ENV !== "test",
   })
 );
 // Routers

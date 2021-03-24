@@ -14,3 +14,38 @@ it("Returns a 400 on invalid email", async () => {
     .send({ email: "test.com", password: "password" })
     .expect(400);
 });
+
+it("Returns a 400 on invalid password", async () => {
+  return request(app)
+    .post("/api/users/signup")
+    .send({ email: "test@test.com", password: "1" })
+    .expect(400);
+});
+
+it("Returns a 400 on empty email and password", async () => {
+  return request(app)
+    .post("/api/users/signup")
+    .send({ email: "", password: "" })
+    .expect(400);
+});
+
+it("Block duplicate email", async () => {
+  await request(app)
+    .post("/api/users/signup")
+    .send({ email: "test@test.com", password: "password" })
+    .expect(201);
+  // Duplicate email
+  await request(app)
+    .post("/api/users/signup")
+    .send({ email: "test@test.com", password: "password" })
+    .expect(400);
+});
+
+it("Confirm the cookie creation", async () => {
+  const res = await request(app)
+    .post("/api/users/signup")
+    .send({ email: "test@test.com", password: "password" })
+    .expect(201);
+
+  expect(res.get("Set-Cookie")).toBeDefined();
+});
