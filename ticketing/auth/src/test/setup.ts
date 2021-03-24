@@ -1,11 +1,13 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import { app } from "../app";
 
 // Run before all test
 let mongo: any;
 // MongoMemoryServer init
 beforeAll(async () => {
+  process.env.JWT_KEY = "patch_key"; // signup.ts issue
+
   mongo = new MongoMemoryServer();
   const mongoUri = await mongo.getUri();
 
