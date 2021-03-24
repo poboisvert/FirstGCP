@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.0.0-alpha1",
     "next": "^10.0.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
