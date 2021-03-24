@@ -47,5 +47,5 @@ it("Confirm the cookie creation", async () => {
     .send({ email: "test@test.com", password: "password" })
     .expect(201);
 
-  expect(res.get("Set-Cookie")).toBeDefined();
+  expect(res.get("Set-Cookie")).toBeDefined(); // app.ts secure to edit
 });
