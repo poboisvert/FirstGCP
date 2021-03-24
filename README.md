@@ -18,7 +18,7 @@ https://docs.nats.io/
 
 ## Skaffold with GCP - Configuration
 
-### HOST file
+### HOST file (This must be edited when the project is rerun)
 
 > nvim /etc/hosts
 
@@ -42,7 +42,7 @@ Step 2: Build an Image
 
 Simply adjust the configuration in "infrastructure/k8s" and edit the bottom for all the files.
 
-### K8S - Secret for JWT
+### K8S - Secret for JWT (This must be edited when the project is rerun)
 
 > kubectl create secret generic jwt-secret --from-literal=JWT_KEY=my_key
 
@@ -60,7 +60,7 @@ Please for most file you will use the project ID and the timezone is important. 
 
 ### Steps:
 
-#### GCP
+#### GCP (This must be edited when the project is rerun)
 
 This cloud still use the Docker IDE and the kubernetes must use the correct config file.
 
@@ -85,7 +85,7 @@ Remove/remplace:
 For:
 -> us-gcr.io/ticketing-dev/<project_name>
 
-#### NGINX settings (Load Balancer in GCP)
+#### NGINX settings (Load Balancer in GCP) (This must be edited when the project is rerun)
 
 > kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/cloud/deploy.yaml
 
