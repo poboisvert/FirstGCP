@@ -1,7 +1,7 @@
 import buildClient from "../api/build-client";
 
 const LandingPage = ({ currentUser }) => {
-  console.log(currentUser);
+  //console.log(currentUser);
   // axios.get('/api/users/currentuser');
 
   return currentUser ? (
@@ -14,6 +14,7 @@ const LandingPage = ({ currentUser }) => {
 };
 
 LandingPage.getInitialProps = async (context) => {
+  //console.log("LANDING"); // Is now disable by _app
   //console.log(req.headers); // cookie for the session will be displayed
   // const response = await axios.get('/api/users/currentuser');
   // k get services -n ingress-nginx
