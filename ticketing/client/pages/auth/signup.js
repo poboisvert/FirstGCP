@@ -1,24 +1,24 @@
-import useRequest from "../../hooks/use-request";
-import { useState } from "react";
-import Router from "next/router";
+import { useState, useEffect } from 'react';
+import Router from 'next/router';
+import useRequest from '../../hooks/use-request';
 
 export default () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { doRequest, errors } = useRequest({
-    url: "/api/users/signup",
-    method: "post",
+    url: '/api/users/signup',
+    method: 'post',
     body: {
       email,
-      password,
+      password
     },
-    onSuccess: () => Router.push("/"),
+    onSuccess: () => Router.push('/')
   });
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async event => {
+    event.preventDefault();
 
-    await doRequest(); // wait then execute the line below - router
+    await doRequest();
   };
 
   return (
@@ -28,7 +28,7 @@ export default () => {
         <label>Email Address</label>
         <input
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
           className="form-control"
         />
       </div>
@@ -36,7 +36,7 @@ export default () => {
         <label>Password</label>
         <input
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           type="password"
           className="form-control"
         />

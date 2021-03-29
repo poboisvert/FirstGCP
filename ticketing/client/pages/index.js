@@ -1,12 +1,18 @@
-const initPage = ({ color }) => {
-  console.log("Client side color is ", color);
-  return <h1>Index</h1>;
+import axios from "axios";
+
+const LandingPage = ({ currentUser }) => {
+  // console.log(currentUser);
+  // axios.get('/api/users/currentuser');
+
+  return <h1>Landing Page</h1>;
 };
 
-initPage.getInitialProps = () => {
-  console.log("I am on the server");
+LandingPage.getInitialProps = async () => {
+  // const response = await axios.get('/api/users/currentuser');
 
-  return { color: "black" };
+  // return response.data;
+  console.log("Running Index");
+  return {};
 };
 
-export default initPage;
+export default LandingPage;

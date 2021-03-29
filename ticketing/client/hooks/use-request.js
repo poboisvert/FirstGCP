@@ -4,7 +4,7 @@ import { useState } from "react";
 const AxiosHelper = ({ url, method, body, onSuccess }) => {
   const [errors, setErrors] = useState(null);
 
-  // Generic axios - post, get, put , patch
+  // Generic axios - post, get, put , patch
   const doRequest = async () => {
     try {
       setErrors(null);

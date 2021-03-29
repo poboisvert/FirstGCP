@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
 
-export default ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
-};
+const restProps = ({ Component, pageProps }) => <Component {...pageProps} />;
+
+export default restProps;
