@@ -14,7 +14,7 @@ ticketing/auth/node_modules
 ticketing/nats-test/node_modules
 ticketing/client/node_modules
 ticketing/client/package-lock.json
-
+ticketing/client/.next/
 ticketing/auth/package-lock.json
 ticketing/auth/node_modules/.package-lock.json
 # Distribution / packaging

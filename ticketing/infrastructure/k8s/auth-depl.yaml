@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: us.gcr.io/ticketing-dev-306323/auth
+          image: us.gcr.io/ticketing-dev-306323/auth # Google Project
           env:
             - name: JWT_KEY
               valueFrom:
