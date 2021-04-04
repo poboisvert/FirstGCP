@@ -118,3 +118,11 @@ From now the Skaffold will push the image on the cloud.
 EDIT: If unsafe error in browser. type:
 
 > thisisunsafe
+
+## Public NPM Package
+
+npm login
+
+npm publish --access public
+
+npm version patch
