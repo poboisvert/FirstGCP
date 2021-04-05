@@ -11,12 +11,22 @@ __pycache__/
 
 # Node JS
 ticketing/auth/node_modules
+ticketing/auth/package-lock.json
+
 ticketing/nats-test/node_modules
+ticketing/nats-test/package-lock.json
+
 ticketing/client/node_modules
 ticketing/client/package-lock.json
 ticketing/client/.next/
+
 ticketing/auth/package-lock.json
 ticketing/auth/node_modules/.package-lock.json
+
+ticketing/tickets/node_modules
+ticketing/tickets/package-lock.json
+
+ticketing/common/package-lock.json
 # Distribution / packaging
 .Python
 build/
