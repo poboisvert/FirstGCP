@@ -26,6 +26,9 @@ ticketing/auth/node_modules/.package-lock.json
 ticketing/tickets/node_modules
 ticketing/tickets/package-lock.json
 
+ticketing/order/node_modules
+ticketing/order/package-lock.json
+
 ticketing/common/package-lock.json
 # Distribution / packaging
 .Python

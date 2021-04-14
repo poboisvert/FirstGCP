@@ -126,3 +126,19 @@ npm login
 npm publish --access public
 
 npm version patch
+
+### Nats-server
+
+in nats-test
+
+> k port-forward nats-depl-74d4d5f47c-2q74m 4222:4222
+
+> npm run listen
+
+> Post with POSTMAN
+
+### Order Service
+
+We need to build the image at least once.
+
+> docker build -t pob944/orders .
