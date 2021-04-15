@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { Password } from "../services/password";
+import mongoose from 'mongoose';
+import { Password } from '../services/password';
 
 // This model ma not work with other Mongoose 11 is working
 // Typescript
@@ -12,7 +12,7 @@ interface UserAttrs {
 // Extend Existing Model to UserModel - add UserModel to Model - What the collection looks
 // What a single user has properties
 interface UserModel extends mongoose.Model<UserDoc> {
-  build(attrs: UserAttrs): UserDoc;
+  build(attrs: UserAttrs): UserDoc; // Add the build method for TScript to validate
 }
 
 // DB Schema for MongoDB
@@ -45,10 +45,10 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-userSchema.pre("save", async function (done) {
-  if (this.isModified("password")) {
-    const hashed = await Password.toHash(this.get("password"));
-    this.set("password", hashed);
+userSchema.pre('save', async function (done) {
+  if (this.isModified('password')) {
+    const hashed = await Password.toHash(this.get('password'));
+    this.set('password', hashed);
   }
   done();
 });
@@ -57,6 +57,6 @@ userSchema.statics.build = (attrs: UserAttrs) => {
   return new User(attrs);
 };
 
-const User = mongoose.model<UserDoc, UserModel>("User", userSchema);
+const User = mongoose.model<UserDoc, UserModel>('User', userSchema);
 
 export { User };
