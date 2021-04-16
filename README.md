@@ -142,3 +142,7 @@ in nats-test
 We need to build the image at least once.
 
 > docker build -t pob944/orders .
+
+### NGINX x509 error certification
+
+> kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission

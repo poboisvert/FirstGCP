@@ -20,9 +20,6 @@ ticketing/client/node_modules
 ticketing/client/package-lock.json
 ticketing/client/.next/
 
-ticketing/auth/package-lock.json
-ticketing/auth/node_modules/.package-lock.json
-
 ticketing/tickets/node_modules
 ticketing/tickets/package-lock.json
 
