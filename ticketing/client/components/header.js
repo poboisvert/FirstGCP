@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default ({ currentUser }) => {
+const header = ({ currentUser }) => {
   // Hard Coded pages
   const links = [
     !currentUser && { label: "Sign Up", href: "/auth/signup" },
@@ -30,3 +30,5 @@ export default ({ currentUser }) => {
     </nav>
   );
 };
+
+export default header
