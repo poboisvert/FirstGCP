@@ -1,5 +1,6 @@
 import { Subjects } from "./subjects";
 
+// Version with number
 export interface TicketUpdatedEvent {
   subject: Subjects.TicketUpdated;
   data: {
