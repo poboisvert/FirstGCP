@@ -1,6 +1,6 @@
 {
   "name": "@bonnethood/common",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -28,6 +28,5 @@
     "express-validator": "^6.4.0",
     "jsonwebtoken": "^8.5.1",
     "node-nats-streaming": "^0.3.2",
-    "@bonnethood/common": "^1.0.17"
   }
 }
