@@ -27,6 +27,10 @@ ticketing/orders/node_modules
 ticketing/orders/package-lock.json
 
 ticketing/common/package-lock.json
+
+ticketing/expiration/node_modules
+ticketing/expiration/package-lock.json
+
 # Distribution / packaging
 .Python
 build/

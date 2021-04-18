@@ -20,7 +20,11 @@ https://docs.nats.io/
 
 ### HOST file (This must be edited when the project is rerun)
 
+Load balancer IP address in GCP - Networking - Load Balancing
+
 > nvim /etc/hosts
+
+- Add a domain name associated with Ingress NGINX IP from GCP
 
 ### Docker - Configuration
 
@@ -35,13 +39,26 @@ Step 1:
 Step 2: Build an Image
 
 > cd ticketing/auth
+
 > docker build -t pob944/auth .
+
 > cd ticketing/orders
+
 > docker build -t pob944/orders .
+
 > cd ticketing/tickets
+
 > docker build -t pob944/tickets .
+
 > cd ticketing/client
+
 > docker build -t pob944/client .
+
+> cd ticketing/expiration
+
+> docker build -t pob944/expiration .
+
+We need to build the image at least once.
 
 ## K8s - Configuration
 
@@ -69,7 +86,7 @@ Please for most file you will use the project ID and the timezone is important. 
 
 This cloud still use the Docker IDE and the kubernetes must use the correct config file.
 
-> gcloud init
+> gcloud init OR skaffold brew install --cask google-cloud-sdk
 
 The initialization must use the same timezone as the Kubernetes clusters "us-central1-c".
 
@@ -86,19 +103,16 @@ The initialization must use the same timezone as the Kubernetes clusters "us-cen
 ##### Skaffold .yaml configuration file
 
 Remove/remplace:
--> local push: false add "googleCloudBuild"
-For:
--> us-gcr.io/ticketing-dev/<project_name>
+
+- local push: false add "googleCloudBuild"
+  For:
+- us-gcr.io/ticketing-dev/<project_name>
 
 #### NGINX settings (Load Balancer in GCP) (This must be edited when the project is rerun)
 
 > kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/cloud/deploy.yaml
 
 Source: https://kubernetes.github.io/ingress-nginx/deploy/#gce-gke
-
-#### HOST file
-
-> nvim /etc/hosts -> add the load balancer IP address in GCP - Networking - Load Balancing
 
 #### Skaffold is working
 
@@ -107,8 +121,6 @@ Please do the steps before or the new from the documentation. Otherwise, the app
 > skaffold dev
 
 ## If GCP user not found
-
-Run
 
 > gcloud auth application-default login
 
@@ -141,12 +153,6 @@ in nats-test
 > npm run listen
 
 > Post with POSTMAN
-
-### Order Service
-
-We need to build the image at least once.
-
-> docker build -t pob944/orders .
 
 ### NGINX x509 error certification
 
