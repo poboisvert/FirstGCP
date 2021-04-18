@@ -1,4 +1,4 @@
-import { Publisher, Subjects, TicketUpdatedEvent } from "@bonnethood/common";
+import { Publisher, Subjects, TicketUpdatedEvent } from '@bonnethood/common';
 
 export class TicketUpdatedPublisher extends Publisher<TicketUpdatedEvent> {
   subject: Subjects.TicketUpdated = Subjects.TicketUpdated;

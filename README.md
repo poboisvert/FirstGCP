@@ -32,11 +32,16 @@ copies the entire project, recursively into the container for the build.
 
 Step 1:
 
-> cd ticketing/auth
-
 Step 2: Build an Image
 
+> cd ticketing/auth
 > docker build -t pob944/auth .
+> cd ticketing/orders
+> docker build -t pob944/orders .
+> cd ticketing/tickets
+> docker build -t pob944/tickets .
+> cd ticketing/client
+> docker build -t pob944/client .
 
 ## K8s - Configuration
 
