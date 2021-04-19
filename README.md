@@ -42,21 +42,31 @@ Step 2: Build an Image
 
 > docker build -t pob944/auth .
 
+> docker push pob944/auth
+
 > cd ticketing/orders
 
 > docker build -t pob944/orders .
+
+> docker push pob944/orders
 
 > cd ticketing/tickets
 
 > docker build -t pob944/tickets .
 
+> docker push pob944/tickets
+
 > cd ticketing/client
 
 > docker build -t pob944/client .
 
+> docker push pob944/client
+
 > cd ticketing/expiration
 
 > docker build -t pob944/expiration .
+
+> docker push pob944/expiration
 
 We need to build the image at least once.
 
@@ -157,3 +167,7 @@ in nats-test
 ### NGINX x509 error certification
 
 > kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
+
+> kubectl create secret generic stripe-secret --from-literal STRIPE_KEY='STRIPE_WEBSITE_SECRET_KEY'
+
+> kubectl get secrets

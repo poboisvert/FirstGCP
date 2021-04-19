@@ -99,7 +99,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Concert\",\n    \"price\": 20\n}"
+					"raw": "{\n    \"title\": \"Post\",\n    \"price\": 20\n}"
 				},
 				"url": {
 					"raw": "https://mytickets.dev/api/tickets",
@@ -111,6 +111,66 @@
 					"path": [
 						"api",
 						"tickets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Order Service",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ticketId\": \"607cdb6ddfa215001822d5a4\"\n}"
+				},
+				"url": {
+					"raw": "https://mytickets.dev/api/orders",
+					"protocol": "https",
+					"host": [
+						"mytickets",
+						"dev"
+					],
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - PAYMENTS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderId\": \"607cdb7d9c6e1a001899654b\",\n    \"token\": \"tok_visa\"\n}"
+				},
+				"url": {
+					"raw": "https://mytickets.dev/api/payments",
+					"protocol": "https",
+					"host": [
+						"mytickets",
+						"dev"
+					],
+					"path": [
+						"api",
+						"payments"
 					]
 				}
 			},
@@ -199,7 +259,7 @@
 					"raw": "{\n    \"title\": \"titleJSON\",\n    \"price\": 50\n}"
 				},
 				"url": {
-					"raw": "https://mytickets.dev/api/tickets/606a6f12323fbc0018883ce0",
+					"raw": "https://mytickets.dev/api/tickets/607b399f1a7eec00187fc3e5",
 					"protocol": "https",
 					"host": [
 						"mytickets",
@@ -208,7 +268,7 @@
 					"path": [
 						"api",
 						"tickets",
-						"606a6f12323fbc0018883ce0"
+						"607b399f1a7eec00187fc3e5"
 					]
 				}
 			},
