@@ -14,7 +14,7 @@ spec:
     spec: # Pod rules
       containers:
         - name: client
-          image: us.gcr.io/ticketing-dev-306323/client # pob944/client if local
+          image: us.gcr.io/ticketing-dev-311310/client # pob944/client if local
 ---
 apiVersion: v1
 kind: Service

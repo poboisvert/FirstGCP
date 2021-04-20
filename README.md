@@ -16,16 +16,6 @@ NATS is not used and NATS Streaming Server is used in this application
 
 https://docs.nats.io/
 
-## Skaffold with GCP - Configuration
-
-### HOST file (This must be edited when the project is rerun)
-
-Load balancer IP address in GCP - Networking - Load Balancing
-
-> nvim /etc/hosts
-
-- Add a domain name associated with Ingress NGINX IP from GCP
-
 ### Docker - Configuration
 
 > COPY . .
@@ -78,9 +68,9 @@ Simply adjust the configuration in "infrastructure/k8s" and edit the bottom for 
 
 > kubectl create secret generic jwt-secret --from-literal=JWT_KEY=my_key
 
-See the secrets
+> kubectl create secret generic stripe-secret --from-literal STRIPE_KEY='STRIPE_WEBSITE_SECRET_KEY'
 
-> k get secret
+> kubectl get secrets
 
 ## Google Cloud - Configuration
 
@@ -100,23 +90,29 @@ This cloud still use the Docker IDE and the kubernetes must use the correct conf
 
 The initialization must use the same timezone as the Kubernetes clusters "us-central1-c".
 
-- Enable Cloud Build API
+- Enable "Cloud Build API"
 
 - Enable - Tools - Cloud Build
 
----
-
-#### Import the Cluster to the local Docker
-
-> gcloud container clusters get-credentials ticketing-dev
-
-##### Skaffold .yaml configuration file
+##### Edit yaml to the project name
 
 Remove/remplace:
 
 - local push: false add "googleCloudBuild"
   For:
 - us-gcr.io/ticketing-dev/<project_name>
+
+#### Skaffold with GCP - Configuration
+
+Load balancer IP address in GCP - Networking - Load Balancing
+
+> sudo nvim /etc/hosts
+
+- Add a domain name associated with Ingress NGINX IP from GCP
+
+#### Import the Cluster to the local Docker
+
+> gcloud container clusters get-credentials ticketing-dev
 
 #### NGINX settings (Load Balancer in GCP) (This must be edited when the project is rerun)
 
@@ -167,7 +163,3 @@ in nats-test
 ### NGINX x509 error certification
 
 > kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
-
-> kubectl create secret generic stripe-secret --from-literal STRIPE_KEY='STRIPE_WEBSITE_SECRET_KEY'
-
-> kubectl get secrets

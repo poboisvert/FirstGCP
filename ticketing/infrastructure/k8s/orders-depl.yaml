@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: orders
-          image: us.gcr.io/ticketing-dev-306323/orders # Google Project if not pob944/orders
+          image: us.gcr.io/ticketing-dev-311310/orders # Google Project if not pob944/orders
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
