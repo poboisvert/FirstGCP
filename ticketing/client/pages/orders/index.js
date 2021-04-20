@@ -13,9 +13,7 @@ const OrderIndex = ({ orders }) => {
 };
 
 OrderIndex.getInitialProps = async (context, client) => {
-  const { data } = await client.get(
-    'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/orders'
-  );
+  const { data } = await client.get('api/orders');
 
   return { orders: data };
 };

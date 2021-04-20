@@ -17,9 +17,7 @@ AppComponent.getInitialProps = async (appContext) => {
   //console.log(appContext);
 
   const client = buildClient(appContext.ctx);
-  const { data } = await client.get(
-    'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser'
-  );
+  const { data } = await client.get('/api/users/currentuser');
 
   let pageProps = {};
   if (appContext.Component.getInitialProps) {
