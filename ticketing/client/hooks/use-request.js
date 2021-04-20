@@ -1,14 +1,15 @@
-import axios from "axios";
-import { useState } from "react";
+import axios from 'axios';
+import { useState } from 'react';
 
-const AxiosHelper = ({ url, method, body, onSuccess }) => {
+export default ({ url, method, body, onSuccess }) => {
   const [errors, setErrors] = useState(null);
 
   // Generic axios - post, get, put , patch
-  const doRequest = async () => {
+  //  const { doRequest, errors } = useRequest({
+  const doRequest = async (props = {}) => {
     try {
       setErrors(null);
-      const response = await axios[method](url, body);
+      const response = await axios[method](url, { ...body, ...props });
 
       if (onSuccess) {
         onSuccess(response.data);
@@ -26,12 +27,8 @@ const AxiosHelper = ({ url, method, body, onSuccess }) => {
           </ul>
         </div>
       );
-
-      //throw err;
     }
   };
 
   return { doRequest, errors };
 };
-
-export default AxiosHelper;
