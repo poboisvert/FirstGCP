@@ -10,6 +10,8 @@ import { ExpirationCompleteListener } from './events/listeners/expiration-comple
 const PORT = 3000;
 
 const start = async () => {
+
+  console.log('Orders starting ...')
   // ENV Settings - tickets-depl.yaml - INIT
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KEY must be defined');
